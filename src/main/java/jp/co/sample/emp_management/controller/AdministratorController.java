@@ -75,6 +75,7 @@ public class AdministratorController {
 		if(result.hasErrors()) {
 			return toInsert();
 		}
+		
 		Administrator administrator = new Administrator();
 		// フォームからドメインにプロパティ値をコピー
 		BeanUtils.copyProperties(form, administrator);
@@ -111,6 +112,7 @@ public class AdministratorController {
 			result.addError(new ObjectError("loginError", "メールアドレスまたはパスワードが不正です。"));
 			return toLogin();
 		}
+		session.setAttribute("administratorName", administrator.getName());
 		return "forward:/employee/showList";
 	}
 	

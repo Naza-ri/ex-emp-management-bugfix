@@ -2,10 +2,11 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <script type="text/javascript">
+
 // パスワード比較
 function checkPasswordMatch() {
     var password = $("#password").val();
-    var confirmPassword = $("#passwordcheck").val();
+    var confirmPassword = $("#validationPassword").val();
 
     if (password != confirmPassword)
         $("#divCheckPasswordMatch").html("パスワードが一致していません");
@@ -71,13 +72,13 @@ function checkPasswordMatch() {
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-										<label for="mailAddress"> メールアドレス: </label> <label
-											th:if="${#fields.hasErrors('mailAddress')}"
-											th:errors="*{mailAddress}" class="error-messages">
-											メールアドレスを入力してください </label> <input type="text" name="mailAddress"
-											id="mailAddress" class="form-control"
-											placeholder="yamada@mail.com" th:field="*{mailAddress}"
-											th:errorclass="error-input" value="yamada@mail.com">
+										<label for="mailAddress"> メールアドレス: </label>
+										<label th:if="${#fields.hasErrors('mailAddress')}"
+											th:errors="*{mailAddress}" class="error-messages">そのメールアドレスは既に登録されています </label>
+									    <label th:if="${#fields.hasErrors('mailAddress')}"
+											th:errors="*{mailAddress}" class="error-messages">メールアドレスを入力してください </label>
+											 <input type="text" name="mailAddress" id="mailAddress" class="form-control"
+											placeholder="yamada@mail.com" th:field="*{mailAddress}" th:errorclass="error-input" value="yamada@mail.com">
 
 									</div>
 								</div>
@@ -94,9 +95,12 @@ function checkPasswordMatch() {
 											th:field="*{password}" th:errorclass="error-input"
 											value="xxxxxxxx"><br>
 										 <label>パスワード(確認):</label>
-										 <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
-										<input type="password"  id="passwordcheck"
-											class="form-control" placeholder="password" value="xxxxxxxx" onChange="checkPasswordMatch();"><br>
+										 <input type="password" name="validationPassword" id="validationPassword" class="form-control" placeholder="password"
+											th:field="*{validationPassword}" th:errorclass="error-input" onkeydown="checkPasswordMatch();"
+											value="xxxxxxxx"><br>
+										 <label th:if="${#fields.hasErrors('validationPassword')}"
+											th:errors="*{validationPassword}" class="error-messages">入力値が違います </label>
+<!-- 										 <div class="registrationFormAlert" id="divCheckPasswordMatch"></div> -->
 									</div>
 								</div>
 							</div>

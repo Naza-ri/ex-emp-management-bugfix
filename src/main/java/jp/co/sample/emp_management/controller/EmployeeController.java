@@ -53,6 +53,12 @@ public class EmployeeController {
 		return "employee/list";
 	}
 
+	@RequestMapping("/search")
+	public String serchMemberByLikeName(String name,Model model) {
+		List<Employee> employees = employeeService.findByLikeName(name);
+		model.addAttribute("employeeList",employees);
+		return "employee/list";
+	}
 	
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を表示する

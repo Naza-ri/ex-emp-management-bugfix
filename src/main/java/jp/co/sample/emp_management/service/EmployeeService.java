@@ -63,4 +63,14 @@ public class EmployeeService {
 	public List<Employee> findByLikeName(String name) {
 		return employeeRepository.findByLikeName(name);
 	}
+	
+	
+	/**
+	 * 補完する.
+	 * @return
+	 */
+	public String autoComplete() {
+		return employeeRepository.autoComplete();
+	}
+
 }

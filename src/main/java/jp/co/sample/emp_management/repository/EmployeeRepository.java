@@ -51,9 +51,7 @@ public class EmployeeRepository {
 	 */
 	public List<Employee> findAll() {
 		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY hire_date DESC";
-
 		List<Employee> developmentList = template.query(sql, EMPLOYEE_ROW_MAPPER);
-
 		return developmentList;
 	}
 
@@ -102,4 +100,16 @@ public class EmployeeRepository {
 		return template.query(sql, param, EMPLOYEE_ROW_MAPPER);
 	}
 	
+	
+	
+	/**
+	 * オートコンプリートをする.
+	 * @return
+	 */
+	public String autoComplete() {
+		String sql= "SELECT '\"' || ARRAY_TO_STRING(ARRAY(SELECT name FROM employees ), '\",\"') ||'\"';";
+		SqlParameterSource param = new MapSqlParameterSource();
+		String allName = template.queryForObject(sql, param, String.class);
+		return allName;
+	}
 }

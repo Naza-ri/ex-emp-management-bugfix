@@ -17,16 +17,38 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- ページング機能 -->
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/> -->
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script> -->
+
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 <!-- オートコンプリート -->
 <script>
 $( function() {
-console.log('aaaa');
+
 	var availableTags = [ [(${allName})] ];
 	$( "#name" ).autocomplete({
       source: availableTags 
     });
   } );
+  
+$(document).ready(function(){
+    $('#myTable').DataTable();
+});
+// jQuery(function($){
+// 	 $.extend( $.fn.dataTable.defaults, {
+// 	 language: {
+// 	 url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+// 	 }
+// 	 });
+// 	$('#myTable').DataTable({
+// 	paging: true,//デフォルトでtrueなのでなくてもOK
+// 	pageLength: 10,//初期表示件数
+// 	lengthMenu: [ [7, 10, 15,-1], [7, 10, 15, "全件"]],//表示件数メニュー
+// 	});
+// 	});
 </script>
 <!-- ここまで -->
 
@@ -110,7 +132,7 @@ console.log('aaaa');
                     <p th:text="${nodata}">検索結果はありません</p>
 			    </div>
 </div>
-				<table class="table table-striped">
+				<table class="table table-striped" id="myTable">
 					<thead>
 						<tr>
 							<th>従業員名</th>
@@ -146,5 +168,7 @@ console.log('aaaa');
 <!-- 	<script -->
 <!-- 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="PaginateMyTable.js"></script>
+	
 </body>
 </html>

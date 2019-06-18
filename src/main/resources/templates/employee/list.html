@@ -41,6 +41,7 @@ jQuery(function($){
 	$('#myTable').DataTable({
 	pageLength: 10,
 	lengthMenu: [ [7, 10, 15,-1], [7, 10, 15, "全件"]],//表示件数メニュー
+	"order": [] ,
 	});
 	});
 </script>
@@ -71,6 +72,7 @@ jQuery(function($){
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="list.html" th:href="@{/employee/showList}">従業員管理</a></li>
+						<li><a href="empadd.html" th:href="@{/employee/empadd}">従業員登録</a></li>
 					</ul>
 					<p class="navbar-text navbar-right">
 						<span th:text="${session.administratorName}">山田太郎</span>さんこんにちは！
@@ -150,7 +152,7 @@ jQuery(function($){
 						</tr>
 					</tbody>
 				</table>
-
+				
 
 <!-- ここから下を編集する必要はありません -->
 
